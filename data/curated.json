@@ -1,0 +1,149 @@
+{
+  "checked": "2026-11-16",
+  "records": [
+    {
+      "id": "CA3273590A1",
+      "topic": "Computing",
+      "title": "Neural network for tabular data with nonlinear filtering",
+      "date": "2025-11-29",
+      "applicant": "Royal Bank of Canada"
+    },
+    {
+      "id": "CA3199602A1",
+      "topic": "Computing",
+      "title": "Multi-scale artificial neural network and a method for operating same for time series forecasting",
+      "date": "2023-11-16",
+      "applicant": "Royal Bank of Canada"
+    },
+    {
+      "id": "CA3034028A1",
+      "topic": "Computing",
+      "title": "Cryptography method and system for securing data via electronic transmission",
+      "date": "2020-08-15"
+    },
+    {
+      "id": "CA2426857A1",
+      "topic": "Networks",
+      "title": "Optical communications network and node for forming such a network",
+      "date": "2002-05-02"
+    },
+    {
+      "id": "CA2418439A1",
+      "topic": "Networks",
+      "title": "Technique for implementing a multi-service packet and optical/tdm virtual private cross-connect",
+      "date": "2003-08-05",
+      "applicant": "Nortel Networks Ltd"
+    },
+    {
+      "id": "CA2557404A1",
+      "topic": "Networks",
+      "title": "Communications system and method for accessing a server and preventing access blocking and minimizing network traffic",
+      "date": "2005-10-06"
+    },
+    {
+      "id": "CA2809730A1",
+      "topic": "Networks",
+      "title": "Network and application server access",
+      "date": "2012-03-08",
+      "applicant": "Research in Motion Ltd"
+    },
+    {
+      "id": "CA2641669C",
+      "topic": "Networks",
+      "title": "Mobile server with multiple service connections",
+      "date": "2015-12-08",
+      "applicant": "BlackBerry Ltd"
+    },
+    {
+      "id": "CA2638324C",
+      "topic": "Networks",
+      "title": "Apparatus and methods for operation of a wireless server",
+      "date": "2014-05-06",
+      "applicant": "BlackBerry Ltd"
+    },
+    {
+      "id": "CA2409435A1",
+      "topic": "Electronics",
+      "title": "Wireless radio frequency technique design and method for testing of integrated circuits and wafers",
+      "date": "2001-11-22"
+    },
+    {
+      "id": "CA2636425A1",
+      "topic": "Electronics",
+      "title": "Battery authentication in a wireless communication device",
+      "date": "2007-07-26"
+    },
+    {
+      "id": "CA2091728A1",
+      "topic": "Electronics",
+      "title": "Electrically-and-magnetically-coupled, batteryless, portable, frequency divider",
+      "date": "1993-09-19",
+      "applicant": "Security Tag Systems Inc"
+    },
+    {
+      "id": "CA2146738C",
+      "topic": "Photonics",
+      "title": "Narrow band filter and method of making same",
+      "date": "1999-09-14",
+      "applicant": "JDS Fitel Inc"
+    },
+    {
+      "id": "CA2211644C",
+      "topic": "Photonics",
+      "title": "Optical demultiplexor",
+      "date": "2001-07-10",
+      "applicant": "JDS Fitel Inc"
+    },
+    {
+      "id": "CA2292806A1",
+      "topic": "Photonics",
+      "title": "Optical coupling system",
+      "date": "2000-07-12",
+      "applicant": "Lumentum Ottawa Inc"
+    },
+    {
+      "id": "CA2336165A1",
+      "topic": "Photonics",
+      "title": "Optical power measurement in photonic integrated devices",
+      "date": "2000-01-13"
+    },
+    {
+      "id": "CA2214870A1",
+      "topic": "Photonics",
+      "title": "Variable-attenuation tunable optical router",
+      "date": "1998-03-10"
+    },
+    {
+      "id": "CA2414465A1",
+      "topic": "Photonics",
+      "title": "Optical transmitter",
+      "date": "2004-01-08",
+      "applicant": "Lumentum Ottawa Inc"
+    },
+    {
+      "id": "CA3029234A1",
+      "topic": "Photography",
+      "title": "Image capture systems, devices, and methods that autofocus based on eye-tracking",
+      "date": "2018-01-04",
+      "applicant": "Thalmic Labs Inc"
+    },
+    {
+      "id": "CA2752491A1",
+      "topic": "Photography",
+      "title": "Sensor systems and digital cameras",
+      "date": "2010-08-26"
+    },
+    {
+      "id": "CA2852677A1",
+      "topic": "Photography",
+      "title": "High speed autofocus system",
+      "date": "2013-04-25"
+    },
+    {
+      "id": "CA2880391A1",
+      "topic": "Photography",
+      "title": "Methods, apparatuses, systems and software for focusing a camera",
+      "date": "2015-11-23"
+    }
+  ]
+}
