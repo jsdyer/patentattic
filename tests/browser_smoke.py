@@ -20,6 +20,8 @@ with ThreadingHTTPServer(("127.0.0.1",0), partial(SimpleHTTPRequestHandler,direc
         assert 'pre-grant applications' in page.locator('#coverage').inner_text()
         page.fill('#query','G01S')
         assert 'matches' in page.locator('#status').inner_text()
+        page.locator('#reset-filters').click()
+        assert page.locator('#query').input_value() == ''
         page.locator('#records article button').first.click()
         assert 'Final fee received' in page.locator('#detail-fields').inner_text()
         page.get_by_role('button',name='Close details').click()

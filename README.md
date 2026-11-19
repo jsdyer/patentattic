@@ -14,6 +14,8 @@ Install `requirements.txt` and run `python3 scripts/build.py`. The build downloa
 
 The historical collection is independently maintained in `data/curated.json`. Its titles, dates and publication numbers were checked against the individual published documents. Its topic labels are editorial.
 
+For nineteenth-century inventions, the interface links to [Library and Archives Canada’s 1869–1919 patent collection](https://www.canada.ca/en/library-archives/collection/research-help/science-technology/canadian-patents.html). It supports title, patent holder, place and number searches, with digitized images for some records.
+
 ## Data
 
 - [CIPO Canadian Patents Database](https://cipo-opic.ic.gc.ca/opic-cipo/cpd/eng/introduction.html)

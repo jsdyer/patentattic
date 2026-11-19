@@ -153,7 +153,7 @@ function setup(data) {
 }
 form.addEventListener('input', () => refresh());
 form.addEventListener('submit', event => { event.preventDefault(); refresh(); });
-ids('reset').addEventListener('click', () => { form.reset(); refresh(); query.focus(); });
+ids('reset-filters').addEventListener('click', () => { form.reset(); refresh(); query.focus(); });
 ids('export').addEventListener('click', exportCsv);
 ids('previous').addEventListener('click', () => { page--; refresh(false); ids('search-heading').scrollIntoView(); });
 ids('next').addEventListener('click', () => { page++; refresh(false); ids('search-heading').scrollIntoView(); });
