@@ -43,7 +43,7 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/browser-tests"
           . "$RUNNER_TEMP/browser-tests/bin/activate"
-          python3 -m pip install playwright==1.59.0
+          python3 -m pip install playwright==1.62.0
           python3 -m playwright install --with-deps chromium
           python3 tests/browser_smoke.py
       - uses: actions/upload-pages-artifact@v4
