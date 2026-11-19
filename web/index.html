@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="Browse Canadian patent publications in computing, networks, electronics, imaging, and optics. Follow the CIPO record for claims, drawings, and legal details.">
+<meta name="description" content="Find a pending Canadian patent application by technology, applicant, or application number. Explore older technology publications and their drawings.">
 <title>Patent Attic · CoolCode</title>
 <link rel="stylesheet" href="style.css">
 <script src="app.mjs" type="module"></script>
@@ -17,13 +17,15 @@
     <a class="nav-link" href="https://cipo-opic.ic.gc.ca/opic-cipo/cpd/eng/introduction.html" target="_blank" rel="noopener noreferrer">Official source ↗</a>
   </nav>
   <div class="wrap hero">
-    <div><h1>Patent <span>Attic</span></h1><p>Browse Canadian patent publications in computing, networks, electronics, imaging, and optics. Follow the CIPO record for claims, drawings, and legal details.</p></div>
+    <div><h1>Patent <span>Attic</span></h1><p>Find a pending Canadian patent application by technology, applicant, or application number. Explore older technology publications and their drawings.</p></div>
     <aside class="snapshot" aria-label="Index snapshot"><p>Source snapshot</p><strong id="coverage">Loading index…</strong><span id="updated"></span></aside>
   </div>
 </header>
 <main id="main" class="wrap">
 <section aria-labelledby="search-heading">
   <div class="section-head"><h2 id="search-heading">Find an invention</h2><button type="button" id="export" disabled>Download CSV</button></div>
+  <label>Search collection <select id="collection"><option value="pregrants">CIPO pre-grant applications</option><option value="catalog">Selected technology publications</option></select></label>
+  <p id="scope-note">Look up an applicant or use an IPC classification such as G01S. CIPO’s queue position and final fee date tell you where an application stood on the workbook date.</p>
   <noscript>This explorer needs JavaScript to search. The official source is linked above.</noscript>
   <div id="quick" class="quick" aria-label="Example searches" hidden></div>
   <form id="filters" class="filters" role="search" hidden>
@@ -40,7 +42,7 @@
 </section>
 <section class="source-section" aria-labelledby="methods-heading">
   <h2 id="methods-heading">Coverage and sources</h2>
-  <p>This curated index includes individual Canadian patent application publications and grants. Use the publication type filter to tell the formats apart. Check the Canadian Patents Database for subsequent administrative or legal changes.</p>
+  <p>The pre-grant queue and the selected publications cover different stages of a patent. Use the Canadian Patents Database for the current official record.</p>
   <p id="method"></p>
   <ul id="sources"><li><a href="https://cipo-opic.ic.gc.ca/opic-cipo/cpd/eng/introduction.html" target="_blank" rel="noopener noreferrer">Official source documentation ↗</a></li></ul>
 </section>

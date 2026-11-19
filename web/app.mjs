@@ -1,3 +1,4 @@
+import { preGrantCatalog } from './pregrants.mjs';
 const ids = id => document.getElementById(id);
 const form = ids('filters');
 const facets = ['a', 'b', 'c'];
@@ -98,7 +99,7 @@ function refresh(resetPage = true) {
   ids('next').disabled = page >= pages;
 }
 function exportCsv() {
-  const rows = [['Title', 'Primary filter', 'Secondary filter', 'Additional filter', 'Date', 'Value', 'Summary', 'Source URL'],
+  const rows = [['Title', ...catalog.facets.map(f => f || 'Additional filter'), catalog.slug.endsWith('pregrants') ? 'Final fee received' : 'Publication date', 'Number', 'Applicant or summary', 'Source URL'],
     ...visible.map(r => [r.title, r.a, r.b, r.c, r.date, r.highlight, r.summary, r.links[0]?.url])];
   const escape = value => {
     const text = String(value ?? '');
@@ -135,10 +136,12 @@ function setup(data) {
     if (!label) return;
     field.setAttribute('aria-label', label);
     field.parentNode.querySelector('span').textContent = label;
+    field.replaceChildren();
     field.append(new Option('All', ''), ...[...new Set(data.records.map(r => r[key]).filter(Boolean))].sort().map(v => new Option(v, v)));
   });
   const chips = data.examples || [];
   ids('quick').hidden = !chips.length;
+  ids('quick').replaceChildren();
   chips.forEach(example => {
     const button = node('button', example);
     button.type = 'button';
@@ -155,10 +158,36 @@ ids('export').addEventListener('click', exportCsv);
 ids('previous').addEventListener('click', () => { page--; refresh(false); ids('search-heading').scrollIntoView(); });
 ids('next').addEventListener('click', () => { page++; refresh(false); ids('search-heading').scrollIntoView(); });
 ids('detail-image').addEventListener('error', () => { ids('detail-image').hidden = true; });
-fetch(new URL('catalog.json', import.meta.url)).then(r => {
-  if (!r.ok) throw new Error('Index unavailable');
-  return r.json();
-}).then(setup).catch(() => {
-  ids('coverage').textContent = 'Index unavailable';
-  ids('status').textContent = 'The source snapshot could not be loaded. Reload the page or open the official source above.';
-});
+let generation = 0;
+const cache = new Map();
+async function loadCollection() {
+  const key = ids('collection').value;
+  const request = ++generation;
+  form.hidden = true;
+  form.reset();
+  ids('quick').hidden = ids('pagination').hidden = true;
+  ids('export').disabled = true;
+  ids('records').replaceChildren();
+  ids('coverage').textContent = 'Loading…';
+  ids('updated').textContent = ids('method').textContent = '';
+  ids('status').textContent = 'Loading source records…';
+  ids('scope-note').textContent = key === 'pregrants'
+    ? 'Look up an applicant or use an IPC classification such as G01S. Dates on the cards show when CIPO received the final fee. Queue positions apply to this edition.'
+    : 'Trace a technology through selected applications and grants. Dates on these cards are publication dates.';
+  try {
+    if (!cache.has(key)) {
+      const response = await fetch(new URL(key + '.json', import.meta.url));
+      if (!response.ok) throw Error('Index unavailable');
+      const data = await response.json();
+      cache.set(key, key === 'pregrants' ? preGrantCatalog(data) : data);
+    }
+    if (request === generation) setup(cache.get(key));
+  } catch {
+    if (request !== generation) return;
+    catalog = null;
+    ids('coverage').textContent = 'Index unavailable';
+    ids('status').textContent = 'Reload the page or choose the other collection.';
+  }
+}
+ids('collection').addEventListener('change', loadCollection);
+loadCollection();

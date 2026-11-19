@@ -1,0 +1,40 @@
+{
+  "id": "patentattic",
+  "title": "Patent Attic",
+  "description": "Look up Canadian pre-grant applications by title, applicant, IPC class or number, and explore older technology publications.",
+  "category": "disclosures",
+  "tags": [
+    "cipo",
+    "patents",
+    "invention",
+    "computing",
+    "networking",
+    "electronics",
+    "photography"
+  ],
+  "icon": "lightbulb",
+  "url": "/patentattic/",
+  "source": "https://github.com/jsdyer/patentattic",
+  "hosting": "project",
+  "access": "browser",
+  "data_info": {
+    "mode": "snapshot",
+    "detail": "CIPO’s weekly pre-grant queue and 22 individually checked technology publications are searchable collections.",
+    "cadence": "Weekly",
+    "probes": [
+      {
+        "label": "Pre-grant workbook",
+        "url": "https://coolcode.ca/patentattic/manifest.json",
+        "path": [
+          "date"
+        ],
+        "count_at": {
+          "path": [
+            "count"
+          ],
+          "unit": "pre-grant applications"
+        }
+      }
+    ]
+  }
+}

@@ -6,6 +6,8 @@ from pathlib import Path
 import re
 import shutil
 
+from pregrants import fetch_edition
+
 ROOT = Path(__file__).resolve().parent.parent
 CIPO = "https://cipo-opic.ic.gc.ca/opic-cipo/cpd/eng/introduction.html"
 IP_HORIZONS = "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/canadian-intellectual-property-statistics/ip-horizons-download-intellectual-property-data"
@@ -67,9 +69,16 @@ def main():
         ],
         "records": records,
     }
+    edition = fetch_edition()
     dist = ROOT / "dist"
     shutil.copytree(ROOT / "web", dist, dirs_exist_ok=True)
     (dist / "catalog.json").write_text(json.dumps(catalog, ensure_ascii=False, separators=(",", ":")))
+    (dist / "pregrants.json").write_text(json.dumps(edition, ensure_ascii=False, separators=(",", ":")))
+    (dist / "manifest.json").write_text(json.dumps({
+        "date": edition["updated"], "count": edition["count"], "curated": len(records),
+        "source": edition["workbook"], "sha256": edition["sha256"]
+    }, indent=2))
+    print(f"CIPO pre-grant applications: {edition['count']} as of {edition['updated']}")
     print(f"Patent Attic: {len(records)} Canadian publications")
 
 
