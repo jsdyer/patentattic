@@ -19,10 +19,14 @@ class WorkbookLinks(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         href = dict(attrs).get("href", "")
-        if tag == "a" and href.endswith(".xlsx") and "pre-grant" in href:
-            url = urljoin(SOURCE, href)
-            if urlsplit(url).netloc == urlsplit(SOURCE).netloc:
-                self.urls.append(url)
+        url = urljoin(SOURCE, href)
+        parsed = urlsplit(url)
+        filename = parsed.path.rsplit("/", 1)[-1].lower()
+        if (tag == "a" and parsed.scheme == "https"
+                and parsed.netloc == urlsplit(SOURCE).netloc
+                and filename.endswith(".xlsx")
+                and re.search(r"pre[-_]grants?", filename)):
+            self.urls.append(url)
 
 
 def download(url, limit):
@@ -59,10 +63,14 @@ def parse_workbook(raw, url):
         title = value("English Title") or value("French Title")
         fee = value("Final Fee Received Date")
         ipc = value("Classification")
-        if not title or not isinstance(fee, (date, datetime)) or not ipc or not value("Applicants"):
-            raise ValueError("Missing application search field")
-        rows.append([number, str(title).strip(), str(value("Applicants")).strip(), str(ipc).strip(),
-                     fee.isoformat()[:10], int(value("Queue")), value("Statut / Status") or ""])
+        if fee is not None and not isinstance(fee, (date, datetime)):
+            raise ValueError("Invalid final fee date")
+        # CIPO sometimes publishes an identifier and queue position with blank
+        # descriptive fields. Preserve that row without inventing its metadata.
+        text = lambda item: str(item).strip() if item is not None else ""
+        rows.append([number, text(title), text(value("Applicants")), text(ipc),
+                     fee.isoformat()[:10] if fee is not None else "",
+                     int(value("Queue")), value("Statut / Status") or ""])
     workbook.close()
     if not updated or not rows:
         raise ValueError("Missing source date or pre-grant applications")

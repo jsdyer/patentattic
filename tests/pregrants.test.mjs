@@ -10,3 +10,11 @@ test('keeps application and grant identifiers distinct and exposes IPC and queue
   assert.equal(row.fields['Queue position in this edition'],1);
   assert.ok(row.links[0].url.endsWith('/3016489/summary.html'));
 });
+test('keeps incomplete CIPO entries searchable without fabricated metadata',()=>{
+  const [row]=preGrantCatalog({count:1,rows:[['2983327','','','','',13947,'']]}).records;
+  assert.equal(row.highlight,'2983327');
+  assert.equal(row.title,'Title not supplied by CIPO');
+  assert.equal(row.a,'Classification not supplied');
+  assert.equal(row.date,'');
+  assert.equal(row.fields['Queue position in this edition'],13947);
+});

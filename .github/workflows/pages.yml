@@ -30,6 +30,7 @@ jobs:
             . "$RUNNER_TEMP/app-venv/bin/activate"
             python3 -m pip install -r requirements.txt
           fi
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
           python3 scripts/build.py
           test -s dist/index.html
       - name: Run application tests
