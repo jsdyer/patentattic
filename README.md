@@ -31,3 +31,7 @@ Public GitHub repositories can have scheduled workflows disabled after 60 days o
 
 This is an interim mitigation, not a scheduling guarantee: GitHub does not document active-workflow renewal as a permanent exemption, and scheduled runs can be delayed or dropped. A scheduler on our own Linux server is the planned independent trigger. The guard does not collect data, create dummy commits, or change source/check timestamps; successful collection and published data freshness still need monitoring.
 <!-- /schedule-reliability -->
+
+## Published freshness
+
+`manifest.json.retrieved_at` records successful download and validation of the CIPO pre-grant workbook. Its `date` remains the publisher’s edition date. The watchdog checks retrieval, not the editorial review date of the historical examples.

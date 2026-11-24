@@ -50,6 +50,17 @@ class WorkbookLinkTests(unittest.TestCase):
         self.assertEqual(edition["rows"], [["2983327", "", "", "", "", 13947, ""]])
         self.assertEqual(edition["count"], 1)
 
+    def test_online_retrieval_date_is_distinct_from_workbook_edition(self):
+        import pregrants
+        from datetime import datetime
+        from unittest.mock import patch
+        href="/site/canadian-intellectual-property-office/sites/default/files/documents/Weekly_Pre_Grant_Completed_2026-11-24.xlsx"
+        with patch.object(pregrants,"download",side_effect=[f'<a href="{href}">XLSX</a>'.encode(),self.workbook()]):
+            edition=pregrants.fetch_edition()
+        self.assertEqual(edition["updated"],"2026-11-24")
+        self.assertIsNotNone(datetime.fromisoformat(edition["retrieved_at"]).tzinfo)
+        self.assertNotIn("retrieved_at",parse_workbook(self.workbook(),"https://example.com/source.xlsx"))
+
     def test_rejects_invalid_nonempty_fee_date(self):
         with self.assertRaisesRegex(ValueError, "Invalid final fee date"):
             parse_workbook(self.workbook("not a date"), "https://example.com/source.xlsx")

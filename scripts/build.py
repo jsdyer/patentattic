@@ -75,7 +75,7 @@ def main():
     (dist / "catalog.json").write_text(json.dumps(catalog, ensure_ascii=False, separators=(",", ":")))
     (dist / "pregrants.json").write_text(json.dumps(edition, ensure_ascii=False, separators=(",", ":")))
     (dist / "manifest.json").write_text(json.dumps({
-        "date": edition["updated"], "count": edition["count"], "curated": len(records),
+        "date": edition["updated"], "retrieved_at": edition["retrieved_at"], "count": edition["count"], "curated": len(records),
         "source": edition["workbook"], "sha256": edition["sha256"]
     }, indent=2))
     print(f"CIPO pre-grant applications: {edition['count']} as of {edition['updated']}")

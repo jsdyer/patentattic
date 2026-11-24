@@ -1,5 +1,5 @@
 """Read the public CIPO pre-grant workbook and retain its search fields."""
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 import hashlib
 from html.parser import HTMLParser
 from io import BytesIO
@@ -84,4 +84,6 @@ def fetch_edition():
     if len(set(parser.urls)) != 1:
         raise ValueError("Expected one English CIPO pre-grant workbook")
     url = parser.urls[0]
-    return parse_workbook(download(url, 32_000_000), url)
+    edition = parse_workbook(download(url, 32_000_000), url)
+    edition["retrieved_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    return edition
